@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">MobileComputingCA</string>
     <string name="notes">Notes</string>
+    <string name="enter_note">enter note</string>
 </resources>
