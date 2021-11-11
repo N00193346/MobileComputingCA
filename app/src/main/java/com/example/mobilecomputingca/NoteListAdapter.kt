@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mobilecomputingca.data.NoteEntity
 import com.example.mobilecomputingca.databinding.ListItemBinding
 
-class NotesListAdapter(private val notesList: List<NoteEntity>):
+class NotesListAdapter(private val notesList: List<NoteEntity>,
+        private val listener : ListItemListener) :
+
     RecyclerView.Adapter<NotesListAdapter.ViewHolder>(){
 
         inner class ViewHolder(itemView: View):
@@ -21,12 +23,20 @@ class NotesListAdapter(private val notesList: List<NoteEntity>):
         return ViewHolder(view)
     }
 
+
+    override fun getItemCount() = notesList.size
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val note = notesList[position]
         with(holder.binding) {
             noteText.text = note.text
+            root.setOnClickListener{
+                listener.onItemClick(note.id)
+            }
         }
     }
-
-    override fun getItemCount() = notesList.size
+        interface ListItemListener{
+            //When clicked pass the note's ID
+            fun onItemClick(noteId: Int)
+        }
 }
