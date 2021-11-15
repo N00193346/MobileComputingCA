@@ -34,7 +34,7 @@ class NotesListAdapter(
         with(holder.binding) {
             noteText.text = note.text
             root.setOnClickListener {
-                listener.onItemClick(note.id)
+                listener.editNote(note.id)
             }
             fab.setOnClickListener {
                 if (selectedNotes.contains(note)) {
@@ -59,7 +59,7 @@ class NotesListAdapter(
 
     interface ListItemListener {
         //When clicked pass the note's ID
-        fun onItemClick(noteId: Int)
+        fun editNote(noteId: Int)
         fun onItemSelectionChanged()
     }
 }
