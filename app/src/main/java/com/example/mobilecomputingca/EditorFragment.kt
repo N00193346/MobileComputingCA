@@ -1,5 +1,6 @@
 package com.example.mobilecomputingca
 
+import android.app.Activity
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,7 +8,10 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.mobilecomputingca.databinding.EditorFragmentBinding
@@ -33,8 +37,25 @@ class EditorFragment : Fragment() {
         }
         setHasOptionsMenu(true)
 
+        viewModel = ViewModelProvider(this).get(EditorViewModel::class.java)
+
         binding = EditorFragmentBinding.inflate(inflater,container, false)
-        binding.editor.setText("You selected note number ${args.noteId}")
+        binding.editor.setText("")
+
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    saveAndReturn()
+                }
+            }
+        )
+
+        viewModel.currentNote.observe(viewLifecycleOwner, Observer {
+            binding.editor.setText(it.text)
+        })
+        viewModel.getNoteById(args.noteId)
+
         return binding.root
     }
 
@@ -46,13 +67,21 @@ class EditorFragment : Fragment() {
     }
 
     private fun saveAndReturn(): Boolean {
+        //Imm = input method manager
+        val imm = requireActivity()
+            .getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(binding.root.windowToken, 0)
+
+        viewModel.currentNote.value?.text = binding.editor.text.toString()
+        viewModel.updateNote()
+
         findNavController().navigateUp()
         return true
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(EditorViewModel::class.java)
+
 
     }
 
