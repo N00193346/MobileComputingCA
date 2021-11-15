@@ -25,4 +25,13 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
             }
         }
     }
+
+    fun deleteNotes(selectedNotes: List<NoteEntity>) {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                val sampleNotes = SampleDataProvider.getNotes()
+                database?.noteDao()?.deleteNotes(selectedNotes)
+            }
+        }
+    }
 }
