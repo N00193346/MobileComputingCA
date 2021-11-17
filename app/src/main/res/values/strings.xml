@@ -1,10 +1,4 @@
 <resources>
     <string name="app_name">MobileComputingCA</string>
     <string name="notes">Notes</string>
-    <string name="enter_note">enter note</string>
-    <string name="add_sample_data">Add Sample data</string>
-    <string name="delete">Delete</string>
-    <string name="delete_all">Delete all</string>
-    <string name="new_note">New Note</string>
-    <string name="edit_note">Edit Note</string>
 </resources>
