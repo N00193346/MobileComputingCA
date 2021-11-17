@@ -17,6 +17,7 @@ class MainFragment : Fragment() {
 
     private lateinit var viewModel: MainViewModel
     private lateinit var binding: MainFragmentBinding
+    private lateinit var adapter: FilmsListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,8 +40,12 @@ class MainFragment : Fragment() {
 
         //Display the sample data to the user
         viewModel.filmsList.observe(viewLifecycleOwner, Observer {
-            //it refers to the films objects being received frp, the films list
+            //it refers to the films objects being received from the films list
             Log.i("filmLogging", it.toString())
+            adapter = FilmsListAdapter(it)
+            binding.recyclerView.adapter = adapter
+            //Telling the recycler view is going to be a list
+            binding.recyclerView.layoutManager = LinearLayoutManager(activity)
         })
 
         return binding.root
