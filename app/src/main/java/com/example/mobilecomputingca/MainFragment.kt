@@ -12,7 +12,9 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mobilecomputingca.databinding.MainFragmentBinding
 
-class MainFragment : Fragment() {
+class MainFragment : Fragment(),
+    FilmsListAdapter.ListItemListener {
+
 
 
     private lateinit var viewModel: MainViewModel
@@ -42,7 +44,7 @@ class MainFragment : Fragment() {
         viewModel.filmsList.observe(viewLifecycleOwner, Observer {
             //it refers to the films objects being received from the films list
             Log.i("filmLogging", it.toString())
-            adapter = FilmsListAdapter(it)
+            adapter = FilmsListAdapter(it, this@MainFragment)
             binding.recyclerView.adapter = adapter
             //Telling the recycler view is going to be a list
             binding.recyclerView.layoutManager = LinearLayoutManager(activity)
@@ -52,6 +54,9 @@ class MainFragment : Fragment() {
 
     }
 
+    override fun onItemClick(filmId: Int) {
+        Log.i(TAG, "onItemClick: received film id $filmId")
+    }
 
 
 }

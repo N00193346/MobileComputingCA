@@ -8,7 +8,10 @@ import com.example.mobilecomputingca.data.FilmEntity
 import com.example.mobilecomputingca.databinding.ListItemBinding
 
 //Film data must first be passed into the adapter
-class FilmsListAdapter(private val filmsList: List<FilmEntity>) :
+class FilmsListAdapter(private val filmsList: List<FilmEntity>,
+    //listener reference
+    private val listener: ListItemListener) :
+
         RecyclerView.Adapter<FilmsListAdapter.ViewHolder>(){
 
         inner class ViewHolder(itemView: View):
@@ -30,9 +33,18 @@ class FilmsListAdapter(private val filmsList: List<FilmEntity>) :
         val film = filmsList[position]
         with(holder.binding) {
             filmTitle.text = film.title
+            root.setOnClickListener{
+                //When the item is clicked, pass in the id
+                listener.onItemClick(film.id)
+            }
         }
     }
 
     //Find out how many films are in the list
     override fun getItemCount() = filmsList.size
+
+    //Listener so item knows when it's been clicked
+    interface ListItemListener {
+        fun onItemClick(filmId: Int)
+    }
 }
