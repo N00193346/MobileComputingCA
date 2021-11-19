@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mobilecomputingca.databinding.MainFragmentBinding
@@ -56,6 +57,9 @@ class MainFragment : Fragment(),
 
     override fun onItemClick(filmId: Int) {
         Log.i(TAG, "onItemClick: received film id $filmId")
+        //Sending id from main fragment to the editor fragment
+        val action = MainFragmentDirections.actionEditFilm(filmId)
+        findNavController().navigate(action)
     }
 
 

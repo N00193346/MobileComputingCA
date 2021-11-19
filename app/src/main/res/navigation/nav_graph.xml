@@ -18,5 +18,10 @@
         android:id="@+id/editorFragment"
         android:name="com.example.mobilecomputingca.EditorFragment"
         android:label="editor_fragment"
-        tools:layout="@layout/editor_fragment" />
+        tools:layout="@layout/editor_fragment" >
+        <argument
+            android:name="filmId"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
 </navigation>
