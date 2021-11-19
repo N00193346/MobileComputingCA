@@ -1,10 +1,14 @@
 package com.example.mobilecomputingca.data
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.example.mobilecomputingca.NEW_FILM_ID
 import java.util.*
 
-data class FilmEntity (
 
+@Entity(tableName = "films")
+data class FilmEntity (
+    @PrimaryKey(autoGenerate = true)
      var id: Int,
      var title: String,
      var description: String,
