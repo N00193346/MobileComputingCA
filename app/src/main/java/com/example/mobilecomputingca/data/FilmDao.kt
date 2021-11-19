@@ -21,4 +21,7 @@ interface FilmDao {
 
     @Query("SELECT * FROM films WHERE id = :id")
     fun getFilmById(id: Int):FilmEntity?
+
+    @Query("SELECT COUNT(*) FROM films")
+    fun getCount(): Int
 }
