@@ -24,9 +24,9 @@ class SampleDataProvider {
         }
 
         fun getFilms() = arrayListOf(
-            FilmEntity(1, sampleTitle1, sampleDescription1, samplePoster1, getDate(0)),
-            FilmEntity(2, sampleTitle2, sampleDescription2, samplePoster2, getDate(1)),
-            FilmEntity(3, sampleTitle3, sampleDescription3, samplePoster3, getDate(2))
+            FilmEntity(1, sampleTitle1, sampleDescription1, samplePoster1 ),
+            FilmEntity(2, sampleTitle2, sampleDescription2, samplePoster2 ),
+            FilmEntity(3, sampleTitle3, sampleDescription3, samplePoster3 )
         )
     }
 }

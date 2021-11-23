@@ -13,10 +13,10 @@ data class FilmEntity (
      var title: String,
      var description: String,
      var poster: String,
-     var releaseDate: Date
+//     var releaseDate: Date
          )
 
 {
-    constructor(): this(NEW_FILM_ID, "","","",Date())
-    constructor(title: String,description: String, poster: String, date: Date): this(NEW_FILM_ID, "","","",Date())
+    constructor(): this(NEW_FILM_ID, "","","")
+    constructor(title: String,description: String, poster: String, ): this(NEW_FILM_ID, "","","")
 }

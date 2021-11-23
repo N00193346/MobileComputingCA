@@ -13,15 +13,15 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mobilecomputingca.databinding.MainFragmentBinding
+import com.example.mobilecomputingca.model.Film
 
 class MainFragment : Fragment(),
     FilmsListAdapter.ListItemListener {
 
-
-
     private lateinit var viewModel: MainViewModel
     private lateinit var binding: MainFragmentBinding
     private lateinit var adapter: FilmsListAdapter
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,7 +48,7 @@ class MainFragment : Fragment(),
         }
 
         //Display the sample data to the user
-        viewModel.filmsList.observe(viewLifecycleOwner, Observer {
+        viewModel.films.observe(viewLifecycleOwner, Observer {
             //it refers to the films objects being received from the films list
             Log.i("filmLogging", it.toString())
             adapter = FilmsListAdapter(it, this@MainFragment)
@@ -56,6 +56,11 @@ class MainFragment : Fragment(),
             //Telling the recycler view is going to be a list
             binding.recyclerView.layoutManager = LinearLayoutManager(activity)
         })
+
+//        //Button to fetch posts
+//        binding.button.setOnClickListener {
+//            viewModel.getPosts()
+//        }
 
         return binding.root
 
