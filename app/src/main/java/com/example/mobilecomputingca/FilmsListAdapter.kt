@@ -6,11 +6,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobilecomputingca.data.FilmEntity
 import com.example.mobilecomputingca.databinding.ListItemBinding
+import com.example.mobilecomputingca.model.Film
 
 //Film data must first be passed into the adapter
-class FilmsListAdapter(private val filmsList: List<FilmEntity>,
+class FilmsListAdapter(private val filmsList: List<Film>,
     //listener reference
-    private val listener: ListItemListener) :
+                       private val listener: ListItemListener) :
 
         RecyclerView.Adapter<FilmsListAdapter.ViewHolder>(){
 
@@ -32,7 +33,7 @@ class FilmsListAdapter(private val filmsList: List<FilmEntity>,
         //Film's position will be the index
         val film = filmsList[position]
         with(holder.binding) {
-            filmTitle.text = film.title
+            filmTitle.text = film.original_title
             root.setOnClickListener{
                 //When the item is clicked, pass in the id
                 listener.onItemClick(film.id)

@@ -13,10 +13,10 @@ import kotlinx.coroutines.launch
 
 class MainViewModel : ViewModel() {
 
-    private val _films: MutableLiveData<List<FilmEntity>> = MutableLiveData()
+    private val _films: MutableLiveData<List<Film>> = MutableLiveData()
 
     //Using mutable live data so it can be changed at run time
-    val films: MutableLiveData<List<FilmEntity>>
+    val films: MutableLiveData<List<Film>>
 
         get() = _films
 
@@ -36,7 +36,7 @@ class MainViewModel : ViewModel() {
             _isLoading.value = true
             val fetchedFilms = RetrofitInstance.api.getFilms()
             Log.i(TAG, "Got posts: $fetchedFilms")
-            _films.value = fetchedFilms
+            _films.value = fetchedFilms.results
             _isLoading.value = false
 
         }
