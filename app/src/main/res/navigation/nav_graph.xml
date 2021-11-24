@@ -23,5 +23,14 @@
             android:name="filmId"
             app:argType="integer"
             android:defaultValue="0" />
+        <argument
+            android:name="filmTitle"
+            app:argType="string"
+            android:defaultValue="0" />
+        <argument
+            android:name="filmDescription"
+            app:argType="string"
+            android:defaultValue="0" />
+
     </fragment>
 </navigation>

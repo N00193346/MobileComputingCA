@@ -2,6 +2,7 @@ package com.example.mobilecomputingca
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -38,8 +39,10 @@ class EditorFragment : Fragment() {
         //Showing the options menu
         setHasOptionsMenu(true)
 
+        //Assign values from api to elements in the fragment
         binding = EditorFragmentBinding.inflate(inflater, container, false)
-        binding.editor.setText("You selected film id ${args.filmId}")
+        binding.filmTitle.setText("${args.filmTitle}")
+        binding.filmDescription.setText("${args.filmDescription}")
 
         //If the user presses the device back button, use the same back method as the icon
         requireActivity().onBackPressedDispatcher.addCallback(
@@ -50,7 +53,6 @@ class EditorFragment : Fragment() {
                 }
             }
         )
-
         return binding.root
     }
 

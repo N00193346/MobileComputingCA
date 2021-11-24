@@ -47,7 +47,7 @@ class MainFragment : Fragment(),
             addItemDecoration(divider)
         }
 
-        //Display the sample data to the user
+        //Display the data to the user
         viewModel.films.observe(viewLifecycleOwner, Observer {
             //it refers to the films objects being received from the films list
             Log.i("filmLogging", it.toString())
@@ -66,10 +66,10 @@ class MainFragment : Fragment(),
 
     }
 
-    override fun onItemClick(filmId: Int) {
+    override fun onItemClick(filmId: Int, filmTitle: String, filmDescription: String) {
         Log.i(TAG, "onItemClick: received film id $filmId")
         //Sending id from main fragment to the editor fragment
-        val action = MainFragmentDirections.actionEditFilm(filmId)
+        val action = MainFragmentDirections.actionEditFilm(filmId, filmTitle, filmDescription)
         findNavController().navigate(action)
     }
 

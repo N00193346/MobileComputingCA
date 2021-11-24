@@ -1,19 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/editorFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".EditorFragment">
 
-    <EditText
-        android:id="@+id/editor"
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="16dp"
-        android:hint="@string/enter_film"
-        android:inputType="textCapSentences|textMultiLine"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        tools:ignore="Autofill"
-        tools:text="Hello" />
+        android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/filmTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+        <TextView
+            android:id="@+id/filmDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+    </LinearLayout>
 </androidx.core.widget.NestedScrollView>

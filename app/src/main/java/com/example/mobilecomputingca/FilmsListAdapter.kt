@@ -35,8 +35,8 @@ class FilmsListAdapter(private val filmsList: List<Film>,
         with(holder.binding) {
             filmTitle.text = film.original_title
             root.setOnClickListener{
-                //When the item is clicked, pass in the id
-                listener.onItemClick(film.id)
+                //When the item is clicked, pass in the film details
+                listener.onItemClick(film.id, film.original_title, film.overview)
             }
         }
     }
@@ -46,6 +46,6 @@ class FilmsListAdapter(private val filmsList: List<Film>,
 
     //Listener so item knows when it's been clicked
     interface ListItemListener {
-        fun onItemClick(filmId: Int)
+        fun onItemClick(filmId: Int, filmTitle: String, filmDescription: String)
     }
 }
