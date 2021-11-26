@@ -9,37 +9,49 @@
         android:id="@+id/popularFragment"
         android:name="com.example.mobilecomputingca.PopularFragment"
         android:label="main_fragment"
-        tools:layout="@layout/popular_fragment" >
+        tools:layout="@layout/popular_fragment">
         <action
-            android:id="@+id/action_view_popular_film"
+            android:id="@+id/action_popularFragment_to_editorFragment"
             app:destination="@id/editorFragment" />
     </fragment>
     <fragment
         android:id="@+id/editorFragment"
         android:name="com.example.mobilecomputingca.EditorFragment"
         android:label="editor_fragment"
-        tools:layout="@layout/editor_fragment" >
+        tools:layout="@layout/editor_fragment">
         <argument
             android:name="filmId"
-            app:argType="integer"
-            android:defaultValue="0" />
+            android:defaultValue="0"
+            app:argType="integer" />
         <argument
             android:name="filmTitle"
-            app:argType="string"
-            android:defaultValue="0" />
+            android:defaultValue="0"
+            app:argType="string" />
         <argument
             android:name="filmDescription"
-            app:argType="string"
-            android:defaultValue="0" />
+            android:defaultValue="0"
+            app:argType="string" />
 
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.mobilecomputingca.HomeFragment"
         android:label="home_fragment"
-        tools:layout="@layout/home_fragment" >
+        tools:layout="@layout/home_fragment">
         <action
             android:id="@+id/action_homeFragment_to_popularFragment"
             app:destination="@id/popularFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_upcomingFragment"
+            app:destination="@id/upcomingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/upcomingFragment"
+        android:name="com.example.mobilecomputingca.UpcomingFragment"
+        android:label="latest_fragment"
+        tools:layout="@layout/upcoming_fragment">
+        <action
+            android:id="@+id/action_upcomingFragment_to_editorFragment"
+            app:destination="@id/editorFragment" />
     </fragment>
 </navigation>

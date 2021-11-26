@@ -36,11 +36,20 @@ class HomeFragment : Fragment() {
             goPopular()
         }
 
+        binding.latestButton.setOnClickListener {
+            goLatest()
+        }
+
         return binding.root
     }
 
     fun goPopular() {
         val action = HomeFragmentDirections.actionHomeFragmentToPopularFragment()
+        findNavController().navigate(action)
+    }
+
+    fun goLatest() {
+        val action = HomeFragmentDirections.actionHomeFragmentToUpcomingFragment()
         findNavController().navigate(action)
     }
 }

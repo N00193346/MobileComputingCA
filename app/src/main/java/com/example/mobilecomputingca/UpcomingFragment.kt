@@ -12,13 +12,15 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.mobilecomputingca.databinding.PopularFragmentBinding
 
-class PopularFragment : Fragment(),
+import com.example.mobilecomputingca.databinding.UpcomingFragmentBinding
+
+
+class UpcomingFragment : Fragment(),
     FilmsListAdapter.ListItemListener {
 
-    private lateinit var viewModel: PopularViewModel
-    private lateinit var binding: PopularFragmentBinding
+    private lateinit var viewModel: UpcomingViewModel
+    private lateinit var binding: UpcomingFragmentBinding
     private lateinit var adapter: FilmsListAdapter
 
 
@@ -31,8 +33,8 @@ class PopularFragment : Fragment(),
         (activity as AppCompatActivity)
             .supportActionBar?.setDisplayHomeAsUpEnabled(false)
 
-        binding = PopularFragmentBinding.inflate(inflater, container, false)
-        viewModel = ViewModelProvider(this).get(PopularViewModel::class.java)
+        binding = UpcomingFragmentBinding.inflate(inflater, container, false)
+        viewModel = ViewModelProvider(this).get(UpcomingViewModel::class.java)
 
         //Setting up recyclerview properties
         with(binding.recyclerView) {
@@ -50,17 +52,13 @@ class PopularFragment : Fragment(),
         viewModel.films.observe(viewLifecycleOwner, Observer {
             //it refers to the films objects being received from the films list
 //            Log.i("filmLogging", it.toString())
-            Log.i("I'm on the popular page", "test")
-            adapter = FilmsListAdapter(it, this@PopularFragment)
+            Log.i("I'm on the latest page", "Test")
+            adapter = FilmsListAdapter(it, this@UpcomingFragment)
             binding.recyclerView.adapter = adapter
             //Telling the recycler view is going to be a list
             binding.recyclerView.layoutManager = LinearLayoutManager(activity)
         })
 
-//        //Button to fetch posts
-//        binding.button.setOnClickListener {
-//            viewModel.getPosts()
-//        }
 
         return binding.root
 
@@ -69,7 +67,7 @@ class PopularFragment : Fragment(),
     override fun onItemClick(filmId: Int, filmTitle: String, filmDescription: String) {
         Log.i(TAG, "onItemClick: received film id $filmId")
         //Sending id from main fragment to the editor fragment
-        val action = PopularFragmentDirections.actionPopularFragmentToEditorFragment(filmId, filmTitle, filmDescription)
+        val action = UpcomingFragmentDirections.actionUpcomingFragmentToEditorFragment(filmId, filmTitle, filmDescription)
         findNavController().navigate(action)
     }
 

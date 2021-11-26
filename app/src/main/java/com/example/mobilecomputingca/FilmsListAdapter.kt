@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mobilecomputingca.data.FilmEntity
 import com.example.mobilecomputingca.databinding.ListItemBinding
 import com.example.mobilecomputingca.model.Film
 
