@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MobileComputingCA">
     <activity
-        android:name=".MainActivity"
+        android:name=".PopularActivity"
         android:exported="true"
         android:label="@string/films">
         <intent-filter>

@@ -3,15 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/mainFragment">
+    app:startDestination="@id/homeFragment">
 
     <fragment
-        android:id="@+id/mainFragment"
-        android:name="com.example.mobilecomputingca.MainFragment"
+        android:id="@+id/popularFragment"
+        android:name="com.example.mobilecomputingca.PopularFragment"
         android:label="main_fragment"
-        tools:layout="@layout/main_fragment" >
+        tools:layout="@layout/popular_fragment" >
         <action
-            android:id="@+id/action_edit_film"
+            android:id="@+id/action_view_popular_film"
             app:destination="@id/editorFragment" />
     </fragment>
     <fragment
@@ -32,5 +32,14 @@
             app:argType="string"
             android:defaultValue="0" />
 
+    </fragment>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.mobilecomputingca.HomeFragment"
+        android:label="home_fragment"
+        tools:layout="@layout/home_fragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_popularFragment"
+            app:destination="@id/popularFragment" />
     </fragment>
 </navigation>

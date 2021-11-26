@@ -12,14 +12,13 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.mobilecomputingca.databinding.MainFragmentBinding
-import com.example.mobilecomputingca.model.Film
+import com.example.mobilecomputingca.databinding.PopularFragmentBinding
 
-class MainFragment : Fragment(),
+class PopularFragment : Fragment(),
     FilmsListAdapter.ListItemListener {
 
-    private lateinit var viewModel: MainViewModel
-    private lateinit var binding: MainFragmentBinding
+    private lateinit var viewModel: PopularViewModel
+    private lateinit var binding: PopularFragmentBinding
     private lateinit var adapter: FilmsListAdapter
 
 
@@ -32,8 +31,8 @@ class MainFragment : Fragment(),
         (activity as AppCompatActivity)
             .supportActionBar?.setDisplayHomeAsUpEnabled(false)
 
-        binding = MainFragmentBinding.inflate(inflater, container, false)
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        binding = PopularFragmentBinding.inflate(inflater, container, false)
+        viewModel = ViewModelProvider(this).get(PopularViewModel::class.java)
 
         //Setting up recyclerview properties
         with(binding.recyclerView) {
@@ -51,7 +50,7 @@ class MainFragment : Fragment(),
         viewModel.films.observe(viewLifecycleOwner, Observer {
             //it refers to the films objects being received from the films list
             Log.i("filmLogging", it.toString())
-            adapter = FilmsListAdapter(it, this@MainFragment)
+            adapter = FilmsListAdapter(it, this@PopularFragment)
             binding.recyclerView.adapter = adapter
             //Telling the recycler view is going to be a list
             binding.recyclerView.layoutManager = LinearLayoutManager(activity)
@@ -69,7 +68,7 @@ class MainFragment : Fragment(),
     override fun onItemClick(filmId: Int, filmTitle: String, filmDescription: String) {
         Log.i(TAG, "onItemClick: received film id $filmId")
         //Sending id from main fragment to the editor fragment
-        val action = MainFragmentDirections.actionEditFilm(filmId, filmTitle, filmDescription)
+        val action = PopularFragmentDirections.actionViewPopularFilm(filmId, filmTitle, filmDescription)
         findNavController().navigate(action)
     }
 
