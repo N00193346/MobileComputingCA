@@ -53,7 +53,7 @@ class UpcomingFragment : Fragment(),
             //it refers to the films objects being received from the films list
 //            Log.i("filmLogging", it.toString())
             Log.i("I'm on the latest page", "Test")
-            adapter = FilmsListAdapter(it, this@UpcomingFragment)
+            adapter = FilmsListAdapter(requireContext(),it, this@UpcomingFragment)
             binding.recyclerView.adapter = adapter
             //Telling the recycler view is going to be a list
             binding.recyclerView.layoutManager = LinearLayoutManager(activity)

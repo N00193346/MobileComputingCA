@@ -51,7 +51,7 @@ class PopularFragment : Fragment(),
             //it refers to the films objects being received from the films list
 //            Log.i("filmLogging", it.toString())
             Log.i("I'm on the popular page", "test")
-            adapter = FilmsListAdapter(it, this@PopularFragment)
+            adapter = FilmsListAdapter(requireContext(), it, this@PopularFragment)
             binding.recyclerView.adapter = adapter
             //Telling the recycler view is going to be a list
             binding.recyclerView.layoutManager = LinearLayoutManager(activity)
