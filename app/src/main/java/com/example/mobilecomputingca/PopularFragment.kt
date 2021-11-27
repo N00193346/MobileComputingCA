@@ -66,7 +66,7 @@ class PopularFragment : Fragment(),
 
     }
 
-    override fun onItemClick(filmId: Int, filmTitle: String, filmDescription: String) {
+    override fun onItemClick(filmId: Int, filmTitle: String, filmDescription: String, filmReleaseDate: String) {
         Log.i(TAG, "onItemClick: received film id $filmId")
         //Sending id from main fragment to the editor fragment
         val action = PopularFragmentDirections.actionPopularFragmentToEditorFragment(filmId, filmTitle, filmDescription)

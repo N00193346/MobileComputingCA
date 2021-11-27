@@ -32,10 +32,10 @@ class FilmsListAdapter(private val filmsList: List<Film>,
         //Film's position will be the index
         val film = filmsList[position]
         with(holder.binding) {
-            filmTitle.text = film.original_title
+            filmTitle.text = film.title + " (" + film.release_date.substring(0,4) + ")"
             root.setOnClickListener{
                 //When the item is clicked, pass in the film details
-                listener.onItemClick(film.id, film.original_title, film.overview)
+                listener.onItemClick(film.id, film.title, film.overview, film.release_date)
             }
         }
     }
@@ -45,6 +45,6 @@ class FilmsListAdapter(private val filmsList: List<Film>,
 
     //Listener so item knows when it's been clicked
     interface ListItemListener {
-        fun onItemClick(filmId: Int, filmTitle: String, filmDescription: String)
+        fun onItemClick(filmId: Int, filmTitle: String, filmDescription: String, filmReleaseDate: String)
     }
 }
