@@ -40,7 +40,7 @@ class FilmsListAdapter(val context: Context,
                 .into(filmPosterImage)
             root.setOnClickListener{
                 //When the item is clicked, pass in the film details
-                listener.onItemClick(film.id, film.title, film.overview, film.release_date)
+                listener.onItemClick(film.id, film.title, film.overview, film.release_date, film.poster_path)
             }
         }
     }
@@ -50,6 +50,6 @@ class FilmsListAdapter(val context: Context,
 
     //Listener so item knows when it's been clicked
     interface ListItemListener {
-        fun onItemClick(filmId: Int, filmTitle: String, filmDescription: String, filmReleaseDate: String)
+        fun onItemClick(filmId: Int, filmTitle: String, filmDescription: String, filmReleaseDate: String, filmPoster: String)
     }
 }

@@ -31,6 +31,10 @@
             android:name="filmDescription"
             android:defaultValue="0"
             app:argType="string" />
+        <argument
+            android:name="filmPoster"
+            android:defaultValue="0"
+            app:argType="string" />
 
     </fragment>
     <fragment
