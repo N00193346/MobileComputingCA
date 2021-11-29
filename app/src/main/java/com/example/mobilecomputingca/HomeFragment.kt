@@ -31,16 +31,29 @@ class HomeFragment : Fragment() {
         binding = HomeFragmentBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
 
-        //If the popular button is pressed, go to popular page
+        //Assign click listeners to each button to go to different fragments
+        //Search
+        binding.searchButton.setOnClickListener {
+            goSearch()
+        }
+
+        //Popular
         binding.popularButton.setOnClickListener {
             goPopular()
         }
 
+        //Latest
         binding.latestButton.setOnClickListener {
             goLatest()
         }
 
         return binding.root
+    }
+
+    //Functions for buttons on home screen
+    fun goSearch() {
+        val action = HomeFragmentDirections.actionHomeFragmentToSearchFragment()
+        findNavController().navigate(action)
     }
 
     fun goPopular() {
