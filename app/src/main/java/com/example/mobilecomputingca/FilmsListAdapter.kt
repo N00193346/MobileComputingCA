@@ -12,11 +12,6 @@ import com.example.mobilecomputingca.model.Film
 //Film data must first be passed into the adapter
 class FilmsListAdapter(val context: Context,
                        private val filmsList: List<Film>,
-<<<<<<< HEAD
-
-                        //listener reference
-=======
->>>>>>> a343031820462751fbfb63e6233757858d5fdf99
                        private val listener: ListItemListener) :
 
         RecyclerView.Adapter<FilmsListAdapter.ViewHolder>(){
@@ -40,17 +35,9 @@ class FilmsListAdapter(val context: Context,
         val film = filmsList[position]
         with(holder.binding) {
             filmTitle.text = film.title + " (" + film.release_date.substring(0,4) + ")"
-<<<<<<< HEAD
-            // load the image from the web(imageName)
-            // into the plantImage object in the layout
-//            Glide.with(context)
-//                .load(POSTERURL + film.poster_path)
-//                .into(filmPosterImage)
-=======
             Glide.with(context)
                 .load(POSTERURL + film.poster_path)
                 .into(filmPosterImage)
->>>>>>> a343031820462751fbfb63e6233757858d5fdf99
             root.setOnClickListener{
                 //When the item is clicked, pass in the film details
                 listener.onItemClick(film.id, film.title, film.overview, film.release_date, film.poster_path)
