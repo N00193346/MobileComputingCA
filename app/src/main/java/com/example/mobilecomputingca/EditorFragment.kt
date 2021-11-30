@@ -12,6 +12,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
 import com.example.mobilecomputingca.databinding.EditorFragmentBinding
 
 class EditorFragment : Fragment() {
@@ -43,6 +44,10 @@ class EditorFragment : Fragment() {
         binding = EditorFragmentBinding.inflate(inflater, container, false)
         binding.filmTitle.setText("${args.filmTitle}")
         binding.filmDescription.setText("${args.filmDescription}")
+
+        Glide.with(this)
+            .load(POSTERURL + args.filmPoster)
+            .into(binding.filmPosterImage)
 
         //If the user presses the device back button, use the same back method as the icon
         requireActivity().onBackPressedDispatcher.addCallback(
