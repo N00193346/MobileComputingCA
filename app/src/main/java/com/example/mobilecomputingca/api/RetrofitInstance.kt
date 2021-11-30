@@ -3,7 +3,7 @@ package com.example.mobilecomputingca.api
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
-private const val BASE_URL = "https://api.themoviedb.org/3/movie/"
+private const val BASE_URL = "https://api.themoviedb.org/3/"
 object RetrofitInstance {
     /**
      * Use the Retrofit builder to build a retrofit object using a Moshi converter.

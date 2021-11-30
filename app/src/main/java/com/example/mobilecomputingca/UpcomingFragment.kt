@@ -12,7 +12,6 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
 
 import com.example.mobilecomputingca.databinding.UpcomingFragmentBinding
 
@@ -54,14 +53,10 @@ class UpcomingFragment : Fragment(),
             //it refers to the films objects being received from the films list
 //            Log.i("filmLogging", it.toString())
             Log.i("I'm on the latest page", "Test")
-            adapter = FilmsListAdapter(it, this@UpcomingFragment)
-
-
+            adapter = FilmsListAdapter(requireContext(),it, this@UpcomingFragment)
             binding.recyclerView.adapter = adapter
             //Telling the recycler view is going to be a list
             binding.recyclerView.layoutManager = LinearLayoutManager(activity)
-
-
         })
 
 
@@ -69,10 +64,10 @@ class UpcomingFragment : Fragment(),
 
     }
 
-    override fun onItemClick(filmId: Int, filmTitle: String, filmDescription: String, filmReleaseDate: String) {
+    override fun onItemClick(filmId: Int, filmTitle: String, filmDescription: String, filmReleaseDate: String, filmPoster: String) {
         Log.i(TAG, "onItemClick: received film id $filmId")
         //Sending id from main fragment to the editor fragment
-        val action = UpcomingFragmentDirections.actionUpcomingFragmentToEditorFragment(filmId, filmTitle, filmDescription)
+        val action = UpcomingFragmentDirections.actionUpcomingFragmentToEditorFragment(filmId, filmTitle, filmDescription, filmPoster, filmReleaseDate)
         findNavController().navigate(action)
     }
 

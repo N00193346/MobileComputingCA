@@ -6,12 +6,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.mobilecomputingca.api.RetrofitInstance
+import com.example.mobilecomputingca.databinding.SearchResultsFragmentBinding
 import com.example.mobilecomputingca.model.Film
 import kotlinx.coroutines.launch
 
-class PopularViewModel : ViewModel() {
-
+class SearchResultsViewModel : ViewModel() {
     private val _films: MutableLiveData<List<Film>> = MutableLiveData()
+    private lateinit var binding: SearchResultsFragmentBinding
+
 
     //Using mutable live data so it can be changed at run time
     val films: MutableLiveData<List<Film>>
@@ -24,15 +26,14 @@ class PopularViewModel : ViewModel() {
         get() = _isLoading
 
     //When app is initialised
-    init {
-//        filmsList.value = getFilms()
-        getPopular()
-    }
+//    init {
+////        getSearchResults(searchQuery = )
+//    }
 
-    fun getPopular() {
+    fun getSearchResults(searchQuery : String) {
         viewModelScope.launch {
             _isLoading.value = true
-            val fetchedFilms = RetrofitInstance.api.getPopular()
+            val fetchedFilms = RetrofitInstance.api.getSearch(searchQuery)
             Log.i(TAG, "Got posts: $fetchedFilms")
             _films.value = fetchedFilms.results
             _isLoading.value = false

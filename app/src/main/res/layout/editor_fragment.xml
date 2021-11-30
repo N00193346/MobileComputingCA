@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/editorFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:textAlignment="center"
     tools:context=".EditorFragment">
 
 
@@ -15,12 +17,39 @@
         <TextView
             android:id="@+id/filmTitle"
             android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="TextView"
+            android:textAlignment="center"
+            android:textSize="32dp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/filmPosterImage"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:textAlignment="center"
+            tools:src="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/filmDate"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:layout_margin="20dp"
+            android:text="TextView"
+            android:textStyle="bold" />
+
         <TextView
             android:id="@+id/filmDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="20dp"
             android:text="TextView" />
+
+        <Button
+            android:id="@+id/favouriteButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="@string/watchlist_button_text" />
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>
