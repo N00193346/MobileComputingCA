@@ -12,7 +12,10 @@
         android:ellipsize="end"
         android:maxLines="2"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+<<<<<<< HEAD
+=======
         app:layout_constraintBottom_toBottomOf="parent"
+>>>>>>> a343031820462751fbfb63e6233757858d5fdf99
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,6 +25,20 @@
 
     <ImageView
         android:id="@+id/filmPosterImage"
+<<<<<<< HEAD
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:layout_margin="8dp"
+        android:contentDescription="Content Descr"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/filmTitle"
+        tools:ignore="HardcodedText,MissingConstraints" />
+
+=======
         android:layout_width="300dp"
         android:layout_height="400dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -29,4 +46,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/filmTitle"
         tools:srcCompat="@tools:sample/avatars" />
+>>>>>>> a343031820462751fbfb63e6233757858d5fdf99
 </androidx.constraintlayout.widget.ConstraintLayout>

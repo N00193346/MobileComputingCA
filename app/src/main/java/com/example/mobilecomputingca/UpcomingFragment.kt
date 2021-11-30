@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 
 import com.example.mobilecomputingca.databinding.UpcomingFragmentBinding
 
@@ -53,10 +54,18 @@ class UpcomingFragment : Fragment(),
             //it refers to the films objects being received from the films list
 //            Log.i("filmLogging", it.toString())
             Log.i("I'm on the latest page", "Test")
+<<<<<<< HEAD
+            adapter = FilmsListAdapter(it, this@UpcomingFragment)
+
+
+=======
             adapter = FilmsListAdapter(requireContext(),it, this@UpcomingFragment)
+>>>>>>> a343031820462751fbfb63e6233757858d5fdf99
             binding.recyclerView.adapter = adapter
             //Telling the recycler view is going to be a list
             binding.recyclerView.layoutManager = LinearLayoutManager(activity)
+
+
         })
 
 

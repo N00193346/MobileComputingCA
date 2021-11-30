@@ -25,7 +25,6 @@ class PopularViewModel : ViewModel() {
 
     //When app is initialised
     init {
-//        filmsList.value = getFilms()
         getPopular()
     }
 
