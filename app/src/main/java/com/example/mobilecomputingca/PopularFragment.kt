@@ -51,21 +51,25 @@ class PopularFragment : Fragment(),
             //it refers to the films objects being received from the films list
 //            Log.i("filmLogging", it.toString())
             Log.i("I'm on the popular page", "test")
-            adapter = FilmsListAdapter(requireContext(), it, this@PopularFragment)
+            adapter = FilmsListAdapter(it, this@PopularFragment)
             binding.recyclerView.adapter = adapter
             //Telling the recycler view is going to be a list
             binding.recyclerView.layoutManager = LinearLayoutManager(activity)
         })
 
+//        //Button to fetch posts
+//        binding.button.setOnClickListener {
+//            viewModel.getPosts()
+//        }
 
         return binding.root
 
     }
 
-    override fun onItemClick(filmId: Int, filmTitle: String, filmDescription: String, filmReleaseDate: String, filmPoster: String) {
+    override fun onItemClick(filmId: Int, filmTitle: String, filmDescription: String, filmReleaseDate: String) {
         Log.i(TAG, "onItemClick: received film id $filmId")
-
-        val action = PopularFragmentDirections.actionPopularFragmentToEditorFragment(filmId, filmTitle, filmDescription, filmPoster, filmReleaseDate)
+        //Sending id from main fragment to the editor fragment
+        val action = PopularFragmentDirections.actionPopularFragmentToEditorFragment(filmId, filmTitle, filmDescription)
         findNavController().navigate(action)
     }
 

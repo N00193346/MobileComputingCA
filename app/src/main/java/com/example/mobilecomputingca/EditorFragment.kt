@@ -12,17 +12,14 @@ import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.bumptech.glide.Glide
 import com.example.mobilecomputingca.databinding.EditorFragmentBinding
-import com.example.mobilecomputingca.model.Favourite
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 
 class EditorFragment : Fragment() {
 
 
-    private val args: EditorFragmentArgs by navArgs()
+
     private lateinit var viewModel: EditorViewModel
+    private val args: EditorFragmentArgs by navArgs()
     private lateinit var binding: EditorFragmentBinding
 
     override fun onCreateView(
@@ -46,11 +43,6 @@ class EditorFragment : Fragment() {
         binding = EditorFragmentBinding.inflate(inflater, container, false)
         binding.filmTitle.setText("${args.filmTitle}")
         binding.filmDescription.setText("${args.filmDescription}")
-        binding.filmDate.setText("${args.filmReleaseDate}")
-
-        Glide.with(this)
-            .load(POSTERURL + args.filmPoster)
-            .into(binding.filmPosterImage)
 
         //If the user presses the device back button, use the same back method as the icon
         requireActivity().onBackPressedDispatcher.addCallback(
@@ -61,17 +53,8 @@ class EditorFragment : Fragment() {
                 }
             }
         )
-
-        //When do you user presses button, add to watch list
-        binding.favouriteButton.setOnClickListener {
-            saveFavourite()
-
-        }
-
         return binding.root
     }
-
-
 
     //When options menu selected
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -93,24 +76,4 @@ class EditorFragment : Fragment() {
 
     }
 
-    private fun saveFavourite() {
-        Log.i("WatchList", "Clicked add to watchlist")
-
-        if(viewModel.currentFavourite.value != null) {
-           Log.i("Favourite", "Film already in watchlist")
-//            viewModel.removeFavourite(
-//                Favourite(args.filmId, args.filmTitle, args.filmDescription, args.filmPoster)
-//            )
-            }else  {
-            Log.i("Favourite", "Adding film to watchlist")
-
-            viewModel.saveFavourite(
-                Favourite(args.filmId, args.filmTitle, args.filmDescription, args.filmPoster, args.filmReleaseDate)
-            )
-        }
-    }
-
-
-
-    }
-
+}

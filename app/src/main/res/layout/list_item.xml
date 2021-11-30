@@ -12,21 +12,24 @@
         android:ellipsize="end"
         android:maxLines="2"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.111"
         tools:text="Text text text" />
 
     <ImageView
         android:id="@+id/filmPosterImage"
-        android:layout_width="300dp"
-        android:layout_height="400dp"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:layout_margin="8dp"
+        android:contentDescription="Content Descr"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/filmTitle"
-        tools:srcCompat="@tools:sample/avatars" />
+        tools:ignore="HardcodedText,MissingConstraints" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

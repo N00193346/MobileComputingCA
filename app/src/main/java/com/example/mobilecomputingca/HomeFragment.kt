@@ -14,6 +14,7 @@ import com.example.mobilecomputingca.databinding.HomeFragmentBinding
 
 class HomeFragment : Fragment() {
 
+
     private lateinit var viewModel: HomeViewModel
     private lateinit var binding: HomeFragmentBinding
 
@@ -30,34 +31,16 @@ class HomeFragment : Fragment() {
         binding = HomeFragmentBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
 
-        //Assign click listeners to each button to go to different fragments
-        //Search
-        binding.searchButton.setOnClickListener {
-            goSearch()
-        }
-
-        //Popular
+        //If the popular button is pressed, go to popular page
         binding.popularButton.setOnClickListener {
             goPopular()
         }
 
-        //Latest
         binding.latestButton.setOnClickListener {
             goLatest()
         }
 
-        //WatchList
-        binding.watchListButton.setOnClickListener {
-            goWatchList()
-        }
-
         return binding.root
-    }
-
-    //Functions for buttons on home screen
-    fun goSearch() {
-        val action = HomeFragmentDirections.actionHomeFragmentToSearchFragment()
-        findNavController().navigate(action)
     }
 
     fun goPopular() {
@@ -67,11 +50,6 @@ class HomeFragment : Fragment() {
 
     fun goLatest() {
         val action = HomeFragmentDirections.actionHomeFragmentToUpcomingFragment()
-        findNavController().navigate(action)
-    }
-
-    fun goWatchList() {
-        val action = HomeFragmentDirections.actionHomeFragmentToWatchListFragment()
         findNavController().navigate(action)
     }
 }

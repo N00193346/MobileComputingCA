@@ -2,6 +2,4 @@
     <string name="app_name">MobileComputingCA</string>
     <string name="films">Films</string>
     <string name="enter_film">Enter film</string>
-    <string name="app_title">Film Finder</string>
-    <string name="watchlist_button_text">Add to watchlist</string>
 </resources>
