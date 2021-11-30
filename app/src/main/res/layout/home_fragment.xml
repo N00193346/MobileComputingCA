@@ -26,12 +26,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Latest Films"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/popular_button"
-            app:layout_constraintVertical_bias="0.133" />
+            app:layout_constraintTop_toBottomOf="@+id/popular_button" />
 
         <Button
             android:id="@+id/search_button"
@@ -56,5 +54,14 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/watchList_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Watch List"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/latest_button" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

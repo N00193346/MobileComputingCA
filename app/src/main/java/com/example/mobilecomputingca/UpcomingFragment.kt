@@ -67,7 +67,7 @@ class UpcomingFragment : Fragment(),
     override fun onItemClick(filmId: Int, filmTitle: String, filmDescription: String, filmReleaseDate: String, filmPoster: String) {
         Log.i(TAG, "onItemClick: received film id $filmId")
         //Sending id from main fragment to the editor fragment
-        val action = UpcomingFragmentDirections.actionUpcomingFragmentToEditorFragment(filmId, filmTitle, filmDescription, filmPoster)
+        val action = UpcomingFragmentDirections.actionUpcomingFragmentToEditorFragment(filmId, filmTitle, filmDescription, filmPoster, filmReleaseDate)
         findNavController().navigate(action)
     }
 

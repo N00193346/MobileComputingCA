@@ -65,7 +65,7 @@ class PopularFragment : Fragment(),
     override fun onItemClick(filmId: Int, filmTitle: String, filmDescription: String, filmReleaseDate: String, filmPoster: String) {
         Log.i(TAG, "onItemClick: received film id $filmId")
 
-        val action = PopularFragmentDirections.actionPopularFragmentToEditorFragment(filmId, filmTitle, filmDescription, filmPoster)
+        val action = PopularFragmentDirections.actionPopularFragmentToEditorFragment(filmId, filmTitle, filmDescription, filmPoster, filmReleaseDate)
         findNavController().navigate(action)
     }
 

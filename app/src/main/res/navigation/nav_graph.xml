@@ -35,6 +35,10 @@
             android:name="filmPoster"
             android:defaultValue="0"
             app:argType="string" />
+        <argument
+            android:name="filmReleaseDate"
+            android:defaultValue="0"
+            app:argType="string" />
 
     </fragment>
     <fragment
@@ -51,6 +55,9 @@
         <action
             android:id="@+id/action_homeFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_watchListFragment"
+            app:destination="@id/watchListFragment" />
     </fragment>
     <fragment
         android:id="@+id/upcomingFragment"
@@ -79,6 +86,14 @@
         android:name="searchQuery"
         android:defaultValue="0"
         app:argType="string" />
+        <action
+            android:id="@+id/action_searchResultsFragment_to_editorFragment"
+            app:destination="@id/editorFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/watchListFragment"
+        android:name="com.example.mobilecomputingca.WatchListFragment"
+        android:label="watch_list_fragment"
+        tools:layout="@layout/watch_list_fragment" />
 
 </navigation>

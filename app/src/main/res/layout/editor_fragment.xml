@@ -31,9 +31,25 @@
             tools:src="@tools:sample/avatars" />
 
         <TextView
+            android:id="@+id/filmDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="TextView"
+            android:textStyle="bold" />
+
+        <TextView
             android:id="@+id/filmDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="20dp"
             android:text="TextView" />
+
+        <Button
+            android:id="@+id/favouriteButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="@string/watchlist_button_text" />
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

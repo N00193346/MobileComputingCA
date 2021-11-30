@@ -14,7 +14,6 @@ import com.example.mobilecomputingca.databinding.HomeFragmentBinding
 
 class HomeFragment : Fragment() {
 
-
     private lateinit var viewModel: HomeViewModel
     private lateinit var binding: HomeFragmentBinding
 
@@ -47,6 +46,11 @@ class HomeFragment : Fragment() {
             goLatest()
         }
 
+        //WatchList
+        binding.watchListButton.setOnClickListener {
+            goWatchList()
+        }
+
         return binding.root
     }
 
@@ -63,6 +67,11 @@ class HomeFragment : Fragment() {
 
     fun goLatest() {
         val action = HomeFragmentDirections.actionHomeFragmentToUpcomingFragment()
+        findNavController().navigate(action)
+    }
+
+    fun goWatchList() {
+        val action = HomeFragmentDirections.actionHomeFragmentToWatchListFragment()
         findNavController().navigate(action)
     }
 }
