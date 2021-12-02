@@ -16,7 +16,7 @@ import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.mobilecomputingca.databinding.EditorFragmentBinding
 import com.example.mobilecomputingca.model.Favourite
-import com.example.mobilecomputingca.model.Film
+
 
 class EditorFragment : Fragment() {
 
@@ -32,29 +32,37 @@ class EditorFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-
-
-        //Creating options and assigning icon
+        //Creating back icon icon
         (activity as AppCompatActivity).supportActionBar?.let {
             it.setHomeButtonEnabled(true)
             it.setDisplayShowHomeEnabled(true)
             it.setDisplayHomeAsUpEnabled(true)
-            it.setHomeAsUpIndicator(R.drawable.ic_check)
-
+            it.setHomeAsUpIndicator(R.drawable.ic_back)
         }
+
         //Showing the options menu
         setHasOptionsMenu(true)
 
         //Assign values from api to elements in the fragment
         binding = EditorFragmentBinding.inflate(inflater, container, false)
+        //Setting film title
         binding.filmTitle.setText("${args.filmTitle}")
+        //Setting film description
         binding.filmDescription.setText("${args.filmDescription}")
+        //Setting film date
         binding.filmDate.setText("${args.filmReleaseDate}")
         viewModel = ViewModelProvider(this).get(EditorViewModel::class.java)
+        //Check to see if the film is in the watchlist
         viewModel.getFavourite(args.filmId)
 
+        viewModel.currentFavourite.observe(viewLifecycleOwner, Observer {
+            with (it) {
+                currentFavourite = it
+                Log.i("Testlist", currentFavourite.title)
+            }
+        })
 
-
+        //Using glide to display movie poster
         Glide.with(this)
             .load(POSTERURL + args.filmPoster)
             .into(binding.filmPosterImage)
@@ -68,12 +76,8 @@ class EditorFragment : Fragment() {
                 }
             }
         )
-        viewModel.currentFavourite.observe(viewLifecycleOwner, Observer {
-            with (it) {
-                currentFavourite = it
-                Log.i("Testlist", currentFavourite.title)
-            }
-        })
+
+
         //When do you user presses button, add to watch list
         binding.favouriteButton.setOnClickListener {
 
@@ -92,6 +96,7 @@ class EditorFragment : Fragment() {
         }
      }
 
+    //Function used to navigate to previous page
     private fun saveAndReturn(): Boolean {
         //Return up one fragment
         findNavController().navigateUp()
@@ -103,10 +108,9 @@ class EditorFragment : Fragment() {
         Log.i("WatchList Button", "Clicked add to watchlist")
         if(viewModel.currentFavourite.value == currentFavourite) {
            Log.i("WatchList", "Film already in watchlist")
-            viewModel.removeFavourite(
-               args.filmId)
+            viewModel.removeFavourite(args.filmId)
             Log.i("WatchList", "Film removed from watchlist")
-            }else  {
+            }else if(viewModel.currentFavourite.value == null) {
             Log.i("WatchList", "Adding film to watchlist")
 
             viewModel.saveFavourite(
