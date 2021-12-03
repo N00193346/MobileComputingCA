@@ -12,7 +12,10 @@
         tools:layout="@layout/popular_fragment">
         <action
             android:id="@+id/action_popularFragment_to_editorFragment"
-            app:destination="@id/editorFragment" />
+            app:destination="@id/editorFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popExitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/editorFragment"
@@ -48,16 +51,28 @@
         tools:layout="@layout/home_fragment">
         <action
             android:id="@+id/action_homeFragment_to_popularFragment"
-            app:destination="@id/popularFragment" />
+            app:destination="@id/popularFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popExitAnim="@android:anim/slide_out_right" />
         <action
             android:id="@+id/action_homeFragment_to_upcomingFragment"
-            app:destination="@id/upcomingFragment" />
+            app:destination="@id/upcomingFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popExitAnim="@android:anim/slide_out_right" />
         <action
             android:id="@+id/action_homeFragment_to_searchFragment"
-            app:destination="@id/searchFragment" />
+            app:destination="@id/searchFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popExitAnim="@android:anim/slide_out_right" />
         <action
             android:id="@+id/action_homeFragment_to_watchListFragment"
-            app:destination="@id/watchListFragment" />
+            app:destination="@id/watchListFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popExitAnim="@android:anim/slide_out_right"  />
     </fragment>
     <fragment
         android:id="@+id/upcomingFragment"
@@ -66,7 +81,10 @@
         tools:layout="@layout/upcoming_fragment">
         <action
             android:id="@+id/action_upcomingFragment_to_editorFragment"
-            app:destination="@id/editorFragment" />
+            app:destination="@id/editorFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popExitAnim="@android:anim/slide_out_right"  />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
@@ -75,7 +93,11 @@
         tools:layout="@layout/search_fragment" >
         <action
             android:id="@+id/action_searchFragment_to_searchResultsFragment"
-            app:destination="@id/searchResultsFragment" />
+            app:destination="@id/searchResultsFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popExitAnim="@android:anim/slide_out_right" />
+
     </fragment>
     <fragment
         android:id="@+id/searchResultsFragment"
@@ -88,7 +110,10 @@
         app:argType="string" />
         <action
             android:id="@+id/action_searchResultsFragment_to_editorFragment"
-            app:destination="@id/editorFragment" />
+            app:destination="@id/editorFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popExitAnim="@android:anim/slide_out_right"  />
     </fragment>
     <fragment
         android:id="@+id/watchListFragment"
@@ -97,7 +122,10 @@
         tools:layout="@layout/watch_list_fragment" >
         <action
             android:id="@+id/action_watchListFragment_to_editorFragment"
-            app:destination="@id/editorFragment" />
+            app:destination="@id/editorFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popExitAnim="@android:anim/slide_out_right" />
     </fragment>
 
 </navigation>
