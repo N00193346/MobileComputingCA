@@ -55,6 +55,14 @@ class EditorFragment : Fragment() {
         //Check to see if the film is in the watchlist
         viewModel.getFavourite(args.filmId)
 
+        //Check if the film is in the database and assign text to button
+        changeButtonText()
+//        if (viewModel.currentFavourite.value == null){
+//            binding.favouriteButton.text = "Remove from Watchlist"
+//        } else {
+//            binding.favouriteButton.text = "Add to Watchlist"
+//        }
+
         viewModel.currentFavourite.observe(viewLifecycleOwner, Observer {
             with (it) {
                 if (it != null) {
@@ -80,10 +88,12 @@ class EditorFragment : Fragment() {
         )
 
 
-        //When do you user presses button, add to watch list
+        //When do you user presses button
         binding.favouriteButton.setOnClickListener {
-
+            //add to watch list
             saveFavourite()
+            //Change text displayed on the button
+            changeButtonText()
 
         }
 
@@ -105,25 +115,35 @@ class EditorFragment : Fragment() {
         return true
     }
 
+    //Save film into the watchlist
     private fun saveFavourite() {
-
+        //If there is no current favourite, the film does not exist in the watch list
         if(viewModel.currentFavourite.value == null) {
             Log.i("WatchList", "Adding film to watchlist")
-
+            //Insert film into the watchlist
             viewModel.saveFavourite(
                 Favourite(args.filmId, args.filmTitle, args.filmDescription, args.filmPoster, args.filmReleaseDate)
             )
-                    viewModel.getFavourite(args.filmId)
+            viewModel.getFavourite(args.filmId)
         }
+            //Else remove the film from the watch list
             else  {
            Log.i("WatchList", "Film already in watchlist")
             viewModel.removeFavourite(args.filmId)
             Log.i("WatchList", "Film removed from watchlist")
             }
+        //Set the value of favourite to null so we know the film is no longer in the watchlist
             viewModel.nullFavourite()
-
     }
 
+    //Change the text on the button depending on if the film is already in the watch list
+    private fun changeButtonText() {
+        if (viewModel.currentFavourite.value == null){
+            binding.favouriteButton.text = "Remove from Watchlist"
+        } else {
+            binding.favouriteButton.text = "Add to Watchlist"
+        }
+    }
 
 
     }
