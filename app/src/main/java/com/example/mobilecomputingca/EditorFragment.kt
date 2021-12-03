@@ -57,7 +57,9 @@ class EditorFragment : Fragment() {
 
         viewModel.currentFavourite.observe(viewLifecycleOwner, Observer {
             with (it) {
-                currentFavourite = it
+                if (it != null) {
+                    currentFavourite = it
+                }
                 Log.i("Testlist", currentFavourite.title)
             }
         })
@@ -105,18 +107,21 @@ class EditorFragment : Fragment() {
 
     private fun saveFavourite() {
 
-        Log.i("WatchList Button", "Clicked add to watchlist")
-        if(viewModel.currentFavourite.value == currentFavourite) {
-           Log.i("WatchList", "Film already in watchlist")
-            viewModel.removeFavourite(args.filmId)
-            Log.i("WatchList", "Film removed from watchlist")
-            }else if(viewModel.currentFavourite.value == null) {
+        if(viewModel.currentFavourite.value == null) {
             Log.i("WatchList", "Adding film to watchlist")
 
             viewModel.saveFavourite(
                 Favourite(args.filmId, args.filmTitle, args.filmDescription, args.filmPoster, args.filmReleaseDate)
             )
+                    viewModel.getFavourite(args.filmId)
         }
+            else  {
+           Log.i("WatchList", "Film already in watchlist")
+            viewModel.removeFavourite(args.filmId)
+            Log.i("WatchList", "Film removed from watchlist")
+            }
+            viewModel.nullFavourite()
+
     }
 
 

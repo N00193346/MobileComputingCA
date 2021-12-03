@@ -16,11 +16,11 @@ import kotlinx.coroutines.withContext
 
 class EditorViewModel (app: Application) : AndroidViewModel(app) {
     private val database = AppDatabase.getInstance(app)
-    val _currentFavourite: MutableLiveData<Favourite> = MutableLiveData()
+    val _currentFavourite: MutableLiveData<Favourite?> = MutableLiveData()
     private val _watchList: MutableLiveData<List<Film>> = MutableLiveData()
 
     
-    val currentFavourite : LiveData<Favourite>
+    val currentFavourite : MutableLiveData<Favourite?>
     get() = _currentFavourite
 
     val watchList: MutableLiveData<List<Film>>
@@ -37,8 +37,21 @@ class EditorViewModel (app: Application) : AndroidViewModel(app) {
 
                 favourite?.let {
                     _currentFavourite.postValue(it)
-                    Log.i(TAG, "MyNotes Returned from DB" + it.title)
+                    Log.i(TAG, "Got film:" + it.title + " from the watchlist")
                 }
+            }
+        }
+    }
+
+    fun nullFavourite() {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                val favourite = null
+
+                favourite?.let {
+                    _currentFavourite.postValue(it)
+                }
+
             }
         }
     }
@@ -78,9 +91,9 @@ class EditorViewModel (app: Application) : AndroidViewModel(app) {
     fun removeFavourite(id: Int) {
 
         viewModelScope.launch {
-
             withContext(Dispatchers.IO){
                 database?.favouriteDao()?.removeFavourite(id)
+                _currentFavourite.postValue(null)
             }
         }
     }

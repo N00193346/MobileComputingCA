@@ -46,12 +46,7 @@ class PopularFragment : Fragment(),
         with(binding.recyclerView) {
             //Fixed size so every row has same height
             setHasFixedSize(true)
-            //Creating divider to put between rows
-            val divider = DividerItemDecoration(
-                context, LinearLayoutManager(context).orientation
-            )
-            //Applying the divider
-            addItemDecoration(divider)
+
         }
 
         //Display the data to the user

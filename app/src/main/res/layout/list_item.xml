@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_margin="30dp"
+    android:background="#673AB7">
 
     <TextView
         android:id="@+id/filmTitle"
@@ -11,7 +13,9 @@
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:maxLines="2"
+        android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -24,8 +28,11 @@
         android:id="@+id/filmPosterImage"
         android:layout_width="300dp"
         android:layout_height="400dp"
+        android:layout_margin="20dp"
+        android:paddingBottom="50dp"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/filmTitle"
         tools:srcCompat="@tools:sample/avatars" />
