@@ -43,3 +43,27 @@ class WatchListViewModel (app: Application) : AndroidViewModel(app) {
         }
     }
 }
+
+//viewModel.favourites.observe(viewLifecycleOwner, Observer{
+//    if(viewModel.favourites.value != null){
+//        if (it != null) {
+//            if(it.isNotEmpty()) {
+//                this.favouriteItems = it
+//                spinner.visibility = View.GONE;
+//                if (favouriteItems != null) {
+//                    viewModel.getCocktails(favouriteItems)
+//
+//                    adapter = FavouritesListAdapter(favouriteItems, this@FavouritesFragment)
+//                    binding.favouritesRecyclerView.adapter = adapter
+//                    binding.favouritesRecyclerView.layoutManager = LinearLayoutManager(activity)
+//
+//                }
+//            }
+//            else{
+//                spinner.visibility = View.GONE
+//                binding.noFavouritesSaved.visibility = View.VISIBLE
+//            }
+//        }
+//
+//    }
+//})

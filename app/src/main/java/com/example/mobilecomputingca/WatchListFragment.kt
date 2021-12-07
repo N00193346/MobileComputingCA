@@ -30,6 +30,8 @@ class WatchListFragment : Fragment(),
             savedInstanceState: Bundle?
         ): View? {
 
+
+
             //Creating back icon icon
             (activity as AppCompatActivity).supportActionBar?.let {
                 it.setHomeButtonEnabled(true)
@@ -47,18 +49,22 @@ class WatchListFragment : Fragment(),
             with(binding.recyclerView) {
                 //Fixed size so every row has same height
                 setHasFixedSize(true)
-
-
             }
 
             //Display the data to the user
             viewModel.films.observe(viewLifecycleOwner, Observer {
-                //it refers to the films objects being received from the films list
-                Log.i("Watchlist page", "Test")
-                adapter = FilmsListAdapter(requireContext(),it, this@WatchListFragment)
-                binding.recyclerView.adapter = adapter
-                //Telling the recycler view is going to be a list
-                binding.recyclerView.layoutManager = LinearLayoutManager(activity)
+                //If there is no films in the watch list
+                if(it.isEmpty()){
+                    Log.i("Watchlist page", "No films in watchlist")
+                    binding.watchlistEmptyText.visibility = View.VISIBLE
+                } else {
+                    //it refers to the films objects being received from the films list
+                    Log.i("Watchlist page", "Test")
+                    adapter = FilmsListAdapter(requireContext(), it, this@WatchListFragment)
+                    binding.recyclerView.adapter = adapter
+                    //Telling the recycler view is going to be a list
+                    binding.recyclerView.layoutManager = LinearLayoutManager(activity)
+                }
             })
 
 

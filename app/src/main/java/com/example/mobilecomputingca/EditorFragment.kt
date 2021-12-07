@@ -56,21 +56,25 @@ class EditorFragment : Fragment() {
         viewModel.getFavourite(args.filmId)
 
         //Check if the film is in the database and assign text to button
-        changeButtonText()
-//        if (viewModel.currentFavourite.value == null){
-//            binding.favouriteButton.text = "Remove from Watchlist"
-//        } else {
-//            binding.favouriteButton.text = "Add to Watchlist"
-//        }
+//        changeButtonText()
+
 
         viewModel.currentFavourite.observe(viewLifecycleOwner, Observer {
             with (it) {
                 if (it != null) {
                     currentFavourite = it
                 }
+                if (viewModel.currentFavourite.value == null){
+                    binding.favouriteButton.text = "Add to Watchlist"
+                } else {
+                    binding.favouriteButton.text = "Remove from Watchlist"
+                }
+
                 Log.i("Testlist", currentFavourite.title)
+
             }
         })
+
 
         //Using glide to display movie poster
         Glide.with(this)
@@ -139,9 +143,9 @@ class EditorFragment : Fragment() {
     //Change the text on the button depending on if the film is already in the watch list
     private fun changeButtonText() {
         if (viewModel.currentFavourite.value == null){
-            binding.favouriteButton.text = "Remove from Watchlist"
-        } else {
             binding.favouriteButton.text = "Add to Watchlist"
+        } else {
+            binding.favouriteButton.text = "Remove from Watchlist"
         }
     }
 

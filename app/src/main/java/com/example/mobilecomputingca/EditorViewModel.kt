@@ -36,7 +36,7 @@ class EditorViewModel (app: Application) : AndroidViewModel(app) {
                     database?.favouriteDao()?.getFavouriteById(favouriteId)
 
                 favourite?.let {
-                    _currentFavourite.postValue(it)
+                    currentFavourite.postValue(it)
                     Log.i(TAG, "Got film:" + it.title + " from the watchlist")
                 }
             }
