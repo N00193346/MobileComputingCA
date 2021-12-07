@@ -11,7 +11,6 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.example.mobilecomputingca.databinding.WatchListFragmentBinding
@@ -57,6 +56,8 @@ class WatchListFragment : Fragment(),
                 if(it.isEmpty()){
                     Log.i("Watchlist page", "No films in watchlist")
                     binding.watchlistEmptyText.visibility = View.VISIBLE
+                    binding.recyclerView.visibility = View.INVISIBLE
+                    //else display the watch list
                 } else {
                     //it refers to the films objects being received from the films list
                     Log.i("Watchlist page", "Test")
@@ -74,11 +75,17 @@ class WatchListFragment : Fragment(),
 
         override fun onItemClick(filmId: Int, filmTitle: String, filmDescription: String, filmReleaseDate: String, filmPoster: String) {
             Log.i(TAG, "onItemClick: received film id $filmId")
-            //Sending id from main fragment to the editor fragment
+            //Sending id from Watchlist fragment to the editor fragment
             val action = WatchListFragmentDirections.actionWatchListFragmentToEditorFragment(filmId, filmTitle, filmDescription, filmPoster, filmReleaseDate)
             findNavController().navigate(action)
         }
 
+
+    //If popped into the fragment, get watchlist again to update
+    override fun onResume() {
+        super.onResume()
+        viewModel.getWatchList()
+    }
 
     //When options menu selected
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -91,7 +98,7 @@ class WatchListFragment : Fragment(),
     //Function used to navigate to previous page
     private fun saveAndReturn(): Boolean {
         //Return up one fragment
-        findNavController().navigateUp()
+        findNavController().popBackStack()
         return true
     }
 }
