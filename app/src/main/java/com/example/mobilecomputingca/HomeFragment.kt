@@ -63,6 +63,7 @@ class HomeFragment : Fragment() {
     fun goPopular() {
         val action = HomeFragmentDirections.actionHomeFragmentToPopularFragment()
         findNavController().navigate(action)
+
     }
 
     fun goLatest() {

@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="30dp"
-    android:background="#673AB7">
+    android:layout_margin="20dp"
+    android:background="@color/accentColor">
 
     <TextView
         android:id="@+id/filmTitle"
@@ -15,6 +15,7 @@
         android:maxLines="2"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#FFFFFF"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

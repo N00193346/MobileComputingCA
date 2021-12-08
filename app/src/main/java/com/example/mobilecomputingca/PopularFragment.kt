@@ -46,7 +46,6 @@ class PopularFragment : Fragment(),
         with(binding.recyclerView) {
             //Fixed size so every row has same height
             setHasFixedSize(true)
-
         }
 
         //Display the data to the user

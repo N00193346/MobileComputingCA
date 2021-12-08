@@ -11,7 +11,6 @@ import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
-import com.example.mobilecomputingca.databinding.HomeFragmentBinding
 import com.example.mobilecomputingca.databinding.SearchFragmentBinding
 
 class SearchFragment : Fragment() {
@@ -42,8 +41,8 @@ class SearchFragment : Fragment() {
 
         val searchQuery = binding.searchView;
         searchQuery.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(p0: String?): Boolean {
-                val action = SearchFragmentDirections.actionSearchFragmentToSearchResultsFragment(p0.toString())
+            override fun onQueryTextSubmit(userSearch: String?): Boolean {
+                val action = SearchFragmentDirections.actionSearchFragmentToSearchResultsFragment(userSearch.toString())
                 findNavController().navigate(action)
                 return false
             }
@@ -53,11 +52,11 @@ class SearchFragment : Fragment() {
                 Log.i("Search text:", "$newText")
                 return false
             }
+
         })
 
-
         binding.searchButton.setOnClickListener {
-            searchQuery(searchQuery as String)
+            searchQuery(binding.searchView.getQuery().toString())
         }
 
         return binding.root

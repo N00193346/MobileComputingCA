@@ -56,15 +56,12 @@ class EditorFragment : Fragment() {
         //Setting film description
         binding.filmDescription.setText("${args.filmDescription}")
         //Setting film date
-        binding.filmDate.setText("${args.filmReleaseDate}")
+        binding.filmDate.setText("${args.filmReleaseDate.substring(8,10)}/${args.filmReleaseDate.substring(5,7)}/${args.filmReleaseDate.substring(0,4)}")
         viewModel = ViewModelProvider(this).get(EditorViewModel::class.java)
         //Check to see if the film is in the watchlist
         viewModel.getFavourite(args.filmId)
 
         //Check if the film is in the database and assign text to button
-//        changeButtonText()
-
-
         viewModel.currentFavourite.observe(viewLifecycleOwner, Observer {
             with (it) {
                 if (it != null) {
