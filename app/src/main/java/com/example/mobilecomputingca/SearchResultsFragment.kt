@@ -53,16 +53,22 @@ class SearchResultsFragment : Fragment(),
                 setHasFixedSize(true)
             }
 
+
             //Display the data to the user
             viewModel.films.observe(viewLifecycleOwner, Observer {
-                //it refers to the films objects being received from the films list
+                if(it.isEmpty()){
+                    binding.searchResultsText.visibility = View.VISIBLE
+                    binding.recyclerView.visibility = View.INVISIBLE
+                    //else display the watch list
+                } else {
 //            Log.i("filmLogging", it.toString())
-                Log.i("I'm on the results page", "Test")
+                    Log.i("I'm on the results page", "Test")
 
-                adapter = FilmsListAdapter(requireContext(),it, this@SearchResultsFragment)
-                binding.recyclerView.adapter = adapter
-                //Telling the recycler view is going to be a list
-                binding.recyclerView.layoutManager = LinearLayoutManager(activity)
+                    adapter = FilmsListAdapter(requireContext(), it, this@SearchResultsFragment)
+                    binding.recyclerView.adapter = adapter
+                    //Telling the recycler view is going to be a list
+                    binding.recyclerView.layoutManager = LinearLayoutManager(activity)
+                }
             })
 
 
