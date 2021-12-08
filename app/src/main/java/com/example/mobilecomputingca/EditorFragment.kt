@@ -1,5 +1,6 @@
 package com.example.mobilecomputingca
 
+import android.content.DialogInterface
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.util.Log
@@ -9,6 +10,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -31,6 +33,10 @@ class EditorFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+
+
+
 
         //Creating back icon icon
         (activity as AppCompatActivity).supportActionBar?.let {
@@ -128,6 +134,8 @@ class EditorFragment : Fragment() {
             viewModel.saveFavourite(
                 Favourite(args.filmId, args.filmTitle, args.filmDescription, args.filmPoster, args.filmReleaseDate)
             )
+            //Display Added film pop up
+            displayAddedDialog()
             viewModel.getFavourite(args.filmId)
         }
             //Else remove the film from the watch list
@@ -135,9 +143,10 @@ class EditorFragment : Fragment() {
            Log.i("WatchList", "Film already in watchlist")
             viewModel.removeFavourite(args.filmId)
             Log.i("WatchList", "Film removed from watchlist")
-            }
-        //Set the value of favourite to null so we know the film is no longer in the watchlist
+            displayRemovedDialog()
+            //Set the value of favourite to null so we know the film is no longer in the watchlist
             viewModel.nullFavourite()
+            }
     }
 
     //Change the text on the button depending on if the film is already in the watch list
@@ -149,6 +158,27 @@ class EditorFragment : Fragment() {
         }
     }
 
+    //Change Display Alert dialog if film added
 
+    private fun displayAddedDialog() {
+        val addedFilmDialog = AlertDialog.Builder(requireContext())
+        addedFilmDialog.setTitle("Success")
+        addedFilmDialog.setMessage("Film has been added to the Database")
+        addedFilmDialog.setPositiveButton("Dismiss", {dialogInterface: DialogInterface, i: Int ->})
+        addedFilmDialog.show()
     }
+
+    private fun displayRemovedDialog() {
+        val addedFilmDialog = AlertDialog.Builder(requireContext())
+        addedFilmDialog.setTitle("Success")
+        addedFilmDialog.setMessage("Film has been removed from the Database")
+        addedFilmDialog.setPositiveButton("Dismiss", {dialogInterface: DialogInterface, i: Int ->})
+        addedFilmDialog.show()
+    }
+
+
+
+}
+
+
 
