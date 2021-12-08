@@ -1,5 +1,6 @@
 package com.example.mobilecomputingca
 
+import android.content.DialogInterface
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.util.Log
@@ -8,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -57,8 +59,8 @@ class SearchResultsFragment : Fragment(),
             //Display the data to the user
             viewModel.films.observe(viewLifecycleOwner, Observer {
                 if(it.isEmpty()){
-                    binding.searchResultsText.visibility = View.VISIBLE
-                    binding.recyclerView.visibility = View.INVISIBLE
+                    displayDialog()
+                    saveAndReturn()
                     //else display the watch list
                 } else {
 //            Log.i("filmLogging", it.toString())
@@ -96,6 +98,14 @@ class SearchResultsFragment : Fragment(),
         //Return up one fragment
         findNavController().navigateUp()
         return true
+    }
+
+    private fun displayDialog() {
+        val addedFilmDialog = AlertDialog.Builder(requireContext())
+        addedFilmDialog.setTitle("No Film found")
+        addedFilmDialog.setMessage("There is no film in the database related to your search query, please try again")
+        addedFilmDialog.setPositiveButton("Dismiss", { dialogInterface: DialogInterface, i: Int ->})
+        addedFilmDialog.show()
     }
 
 
