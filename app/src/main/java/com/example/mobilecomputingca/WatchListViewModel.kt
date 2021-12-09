@@ -28,11 +28,13 @@ class WatchListViewModel (app: Application) : AndroidViewModel(app) {
         getWatchList()
     }
 
+    //Function to get all films stored in the watchlist (Local database)
     fun getWatchList() {
         Log.i(TAG, "Attempting getting watchlist :")
         viewModelScope.launch {
 
             withContext(Dispatchers.IO) {
+                //User favouriteDAO interface to use getAllFavourites function
                 val favourite =
                     database?.favouriteDao()?.getAllFavourite()
 

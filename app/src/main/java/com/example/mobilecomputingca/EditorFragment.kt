@@ -34,10 +34,6 @@ class EditorFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-
-
-
-
         //Creating back icon icon
         (activity as AppCompatActivity).supportActionBar?.let {
             it.setHomeButtonEnabled(true)
@@ -61,28 +57,31 @@ class EditorFragment : Fragment() {
         //Check to see if the film is in the watchlist
         viewModel.getFavourite(args.filmId)
 
-        //Check if the film is in the database and assign text to button
-        viewModel.currentFavourite.observe(viewLifecycleOwner, Observer {
-            with (it) {
-                if (it != null) {
-                    currentFavourite = it
-                }
-                if (viewModel.currentFavourite.value == null){
-                    binding.favouriteButton.text = "Add to Watchlist"
-                } else {
-                    binding.favouriteButton.text = "Remove from Watchlist"
-                }
-
-                Log.i("Testlist", currentFavourite.title)
-
-            }
-        })
-
 
         //Using glide to display movie poster
         Glide.with(this)
             .load(POSTERURL + args.filmPoster)
             .into(binding.filmPosterImage)
+
+        //Check if the film is in the database and assign text to button
+        viewModel.currentFavourite.observe(viewLifecycleOwner, Observer {
+            //Assigning the value of it to the current favourite, so we know this film is in the watchlist
+            with (it) {
+                if (it != null) {
+                    currentFavourite = it
+                }
+                //If current film not in watchlist change text to add
+                if (viewModel.currentFavourite.value == null){
+                    binding.favouriteButton.text = "Add to Watchlist"
+                } else {
+                    //Else film is in watchlist, change to remove
+                    binding.favouriteButton.text = "Remove from Watchlist"
+                }
+
+
+            }
+        })
+
 
         //If the user presses the device back button, use the same back method as the icon
         requireActivity().onBackPressedDispatcher.addCallback(
@@ -138,8 +137,10 @@ class EditorFragment : Fragment() {
             //Else remove the film from the watch list
             else  {
            Log.i("WatchList", "Film already in watchlist")
+            //Remove film from the watchlist
             viewModel.removeFavourite(args.filmId)
             Log.i("WatchList", "Film removed from watchlist")
+            //Display removed film pop up
             displayRemovedDialog()
             //Set the value of favourite to null so we know the film is no longer in the watchlist
             viewModel.nullFavourite()
@@ -155,8 +156,7 @@ class EditorFragment : Fragment() {
         }
     }
 
-    //Change Display Alert dialog if film added
-
+    //Display Alert dialog if film added
     private fun displayAddedDialog() {
         val addedFilmDialog = AlertDialog.Builder(requireContext())
         addedFilmDialog.setTitle("Success")
@@ -165,6 +165,7 @@ class EditorFragment : Fragment() {
         addedFilmDialog.show()
     }
 
+    //Display Alert dialog if film removed
     private fun displayRemovedDialog() {
         val addedFilmDialog = AlertDialog.Builder(requireContext())
         addedFilmDialog.setTitle("Success")

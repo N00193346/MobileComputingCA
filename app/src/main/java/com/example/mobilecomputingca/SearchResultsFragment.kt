@@ -58,15 +58,19 @@ class SearchResultsFragment : Fragment(),
 
             //Display the data to the user
             viewModel.films.observe(viewLifecycleOwner, Observer {
+                //If the results from the search are empty, return the user to the previous fragment
                 if(it.isEmpty()){
+                    //Display alert dialogue
                     displayDialog()
+                    //Return to previous fragment
                     saveAndReturn()
                     //else display the watch list
                 } else {
 //            Log.i("filmLogging", it.toString())
-                    Log.i("I'm on the results page", "Test")
-
+//                    Log.i("I'm on the results page", "Test")
+                    //Apply film list adapter to the adapter
                     adapter = FilmsListAdapter(requireContext(), it, this@SearchResultsFragment)
+                    //Applying the adapter to the recycler view
                     binding.recyclerView.adapter = adapter
                     //Telling the recycler view is going to be a list
                     binding.recyclerView.layoutManager = LinearLayoutManager(activity)
@@ -78,14 +82,15 @@ class SearchResultsFragment : Fragment(),
 
         }
 
+    //If an item in the list is pressed
         override fun onItemClick(filmId: Int, filmTitle: String, filmDescription: String, filmReleaseDate: String, filmPoster: String) {
             Log.i(TAG, "onItemClick: received film id $filmId")
-            //Sending id from main fragment to the editor fragment
+            //Send the variables to the editor fragment
             val action = SearchResultsFragmentDirections.actionSearchResultsFragmentToEditorFragment(filmId, filmTitle, filmDescription, filmPoster, filmReleaseDate)
             findNavController().navigate(action)
         }
 
-    //When options menu selected
+    //When back button pressed, return to previous fragment
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> saveAndReturn()
@@ -99,7 +104,7 @@ class SearchResultsFragment : Fragment(),
         findNavController().navigateUp()
         return true
     }
-
+    //Function to display error message if there is no films found from the search query
     private fun displayDialog() {
         val addedFilmDialog = AlertDialog.Builder(requireContext())
         addedFilmDialog.setTitle("No Film found")

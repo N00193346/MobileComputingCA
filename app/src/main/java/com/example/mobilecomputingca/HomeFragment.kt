@@ -27,7 +27,9 @@ class HomeFragment : Fragment() {
         (activity as AppCompatActivity)
             .supportActionBar?.setDisplayHomeAsUpEnabled(false)
 
+        //Applying the fragment to the binding
         binding = HomeFragmentBinding.inflate(inflater, container, false)
+        //Applying the view model
         viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
 
         //Assign click listeners to each button to go to different fragments
@@ -55,6 +57,7 @@ class HomeFragment : Fragment() {
     }
 
     //Functions for buttons on home screen
+    //Actions used to navigate to each page
     fun goSearch() {
         val action = HomeFragmentDirections.actionHomeFragmentToSearchFragment()
         findNavController().navigate(action)

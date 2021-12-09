@@ -28,7 +28,7 @@ class EditorViewModel (app: Application) : AndroidViewModel(app) {
 
 
 
-
+        //Get the film from the watchlist to know if the film has been favourited/in the watchlist
     fun getFavourite(favouriteId: Int) {
         Log.i(TAG, "Id : " + favouriteId)
         viewModelScope.launch {
@@ -44,6 +44,7 @@ class EditorViewModel (app: Application) : AndroidViewModel(app) {
         }
     }
 
+    //Change the value of current favourite to null, so the fragment knows the film has been removed from the watch list
     fun nullFavourite() {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
@@ -61,26 +62,22 @@ class EditorViewModel (app: Application) : AndroidViewModel(app) {
 //        getWatchList()
 //    }
 
-
+    //Function to get watchlist
     fun getWatchList() {
         Log.i(TAG, "Attempting getting watchlist :")
         viewModelScope.launch {
-
             withContext(Dispatchers.IO) {
                 val favourite =
                     database?.favouriteDao()?.getAllFavourite()
-
                 Log.i("Get watchList-ViewModel", "Watchlist returned from DB\n" + favourite)
                 _watchList.postValue(favourite!!)
 
             }
         }
     }
-
+    //Function to insert a film into the watchlist
     fun saveFavourite(favouriteEntity: Favourite) {
-
         viewModelScope.launch {
-
             withContext(Dispatchers.IO){
                 database?.favouriteDao()?.insertFavourite(favouriteEntity)
 
@@ -88,9 +85,8 @@ class EditorViewModel (app: Application) : AndroidViewModel(app) {
             }
         }
     }
-
+    //Function to remove a film from the watchlist
     fun removeFavourite(id: Int) {
-
         viewModelScope.launch {
             withContext(Dispatchers.IO){
                 database?.favouriteDao()?.removeFavourite(id)

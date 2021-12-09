@@ -28,13 +28,17 @@ class UpcomingViewModel : ViewModel() {
 //
         getLatest()
     }
-
+    //Function to get recently released films
     fun getLatest() {
         viewModelScope.launch {
+            //Loading variable
             _isLoading.value = true
+            //Use retrofit to make an API call to get rencently released films
             val fetchedFilms = RetrofitInstance.api.getLatest()
             Log.i(TAG, "Got posts: $fetchedFilms")
+            //Put the response from the API in film.value
             _films.value = fetchedFilms.results
+            //The app is no longer loading/waiting for api response
             _isLoading.value = false
 
         }

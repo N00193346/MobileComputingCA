@@ -8,9 +8,7 @@ import androidx.room.TypeConverters
 import com.example.mobilecomputingca.model.Favourite
 
 
-// If you make changes to your Entity class and therefore need to make changes to your table easiest thing
-// to do is change the version here and uncomment .fallbackToDestructiveMigration() below.
-// This will scrap the whole database and start again.
+
 @Database(entities = [Favourite::class], version = 1, exportSchema = false)
 
 abstract class AppDatabase: RoomDatabase() {

@@ -38,24 +38,27 @@ class SearchFragment : Fragment() {
         binding = SearchFragmentBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(this).get(SearchViewModel::class.java)
 
-
+        //Search query is equal to text in the search view
         val searchQuery = binding.searchView;
+        //Text listner to detect changes within the searchview
         searchQuery.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(userSearch: String?): Boolean {
+                //If the user presses search, navigate to the results page with user query
                 val action = SearchFragmentDirections.actionSearchFragmentToSearchResultsFragment(userSearch.toString())
                 findNavController().navigate(action)
                 return false
             }
 
-
+            //Function to output text in searchview when text changed
             override fun onQueryTextChange(newText: String?): Boolean {
                 Log.i("Search text:", "$newText")
                 return false
             }
 
         })
-
+        //If the search button is pressed
         binding.searchButton.setOnClickListener {
+            //Get the text from the search view, pass to searhQuery function
             searchQuery(binding.searchView.getQuery().toString())
         }
 
@@ -64,9 +67,10 @@ class SearchFragment : Fragment() {
 
     }
 
+    //Function to pass the text from the search view to the search result fragment
     fun searchQuery(searchQuery: String) {
         Log.i(TAG, " search Query $searchQuery")
-
+        //Action dictates which fragment to send the variables to
         val action = SearchFragmentDirections.actionSearchFragmentToSearchResultsFragment(searchQuery)
         findNavController().navigate(action)
     }

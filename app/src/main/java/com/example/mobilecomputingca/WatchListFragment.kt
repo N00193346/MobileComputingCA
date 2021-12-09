@@ -29,8 +29,6 @@ class WatchListFragment : Fragment(),
             savedInstanceState: Bundle?
         ): View? {
 
-
-
             //Creating back icon icon
             (activity as AppCompatActivity).supportActionBar?.let {
                 it.setHomeButtonEnabled(true)
@@ -60,8 +58,9 @@ class WatchListFragment : Fragment(),
                     //else display the watch list
                 } else {
                     //it refers to the films objects being received from the films list
-                    Log.i("Watchlist page", "Test")
+                    //Applying the film list to the adapter
                     adapter = FilmsListAdapter(requireContext(), it, this@WatchListFragment)
+                    //Applying the adapter to the recycler view
                     binding.recyclerView.adapter = adapter
                     //Telling the recycler view is going to be a list
                     binding.recyclerView.layoutManager = LinearLayoutManager(activity)
@@ -72,10 +71,10 @@ class WatchListFragment : Fragment(),
             return binding.root
 
         }
-
+    //When the item is click, pass in the variables
         override fun onItemClick(filmId: Int, filmTitle: String, filmDescription: String, filmReleaseDate: String, filmPoster: String) {
             Log.i(TAG, "onItemClick: received film id $filmId")
-            //Sending id from Watchlist fragment to the editor fragment
+         //Action dictates which fragment to send the variables to
             val action = WatchListFragmentDirections.actionWatchListFragmentToEditorFragment(filmId, filmTitle, filmDescription, filmPoster, filmReleaseDate)
             findNavController().navigate(action)
         }

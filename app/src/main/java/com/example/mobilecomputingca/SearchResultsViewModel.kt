@@ -17,25 +17,26 @@ class SearchResultsViewModel : ViewModel() {
 
     //Using mutable live data so it can be changed at run time
     val films: MutableLiveData<List<Film>>
-
-        get() = _films
+    get() = _films
 
 
     private val _isLoading = MutableLiveData(false)
     val isLoading: LiveData<Boolean>
         get() = _isLoading
 
-    //When app is initialised
-//    init {
-////        getSearchResults(searchQuery = )
-//    }
 
+
+    //Function to make api to get films from search query
     fun getSearchResults(searchQuery : String) {
         viewModelScope.launch {
+            //Loading variable
             _isLoading.value = true
+            //Use retrofit to make an API call to get films from search query
             val fetchedFilms = RetrofitInstance.api.getSearch(searchQuery)
             Log.i(TAG, "Got posts: $fetchedFilms")
+            //Put the response from the API in film.value
             _films.value = fetchedFilms.results
+            //The app is no longer loading/waiting for api response
             _isLoading.value = false
 
         }

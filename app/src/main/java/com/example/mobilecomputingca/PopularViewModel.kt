@@ -28,12 +28,17 @@ class PopularViewModel : ViewModel() {
         getPopular()
     }
 
+    //Function to get all currently popular films
     fun getPopular() {
         viewModelScope.launch {
+            //Loading variable
             _isLoading.value = true
+            //Use retrofit to make an API call to get all films
             val fetchedFilms = RetrofitInstance.api.getPopular()
             Log.i(TAG, "Got posts: $fetchedFilms")
+            //Put the response from the API in film.value
             _films.value = fetchedFilms.results
+            //The app is no longer loading/waiting for api response
             _isLoading.value = false
 
         }

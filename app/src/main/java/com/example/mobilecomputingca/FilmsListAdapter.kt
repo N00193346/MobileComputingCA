@@ -34,10 +34,13 @@ class FilmsListAdapter(val context: Context,
         //Film's position will be the index
         val film = filmsList[position]
         with(holder.binding) {
+            //Applying the data to the film title item
             filmTitle.text = film.title + " (" + film.release_date.substring(0,4) + ")"
+            //Applying the data to the film image item
             Glide.with(context)
                 .load(POSTERURL + film.poster_path)
                 .into(filmPosterImage)
+            //When this item is pressed
             root.setOnClickListener{
                 //When the item is clicked, pass in the film details
                 listener.onItemClick(film.id, film.title, film.overview, film.release_date, film.poster_path)
@@ -50,6 +53,7 @@ class FilmsListAdapter(val context: Context,
 
     //Listener so item knows when it's been clicked
     interface ListItemListener {
+        //Pass these items through
         fun onItemClick(filmId: Int, filmTitle: String, filmDescription: String, filmReleaseDate: String, filmPoster: String)
     }
 }
